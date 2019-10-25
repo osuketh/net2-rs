@@ -45,6 +45,9 @@
 
 #[cfg(any(target_os = "redox", target_os = "wasi", unix))] extern crate libc;
 
+#[cfg(all(target_env = "sgx", target_vendor = "fortanix"))]
+extern crate rs_libc as libc;
+
 #[cfg(windows)] extern crate winapi;
 
 #[macro_use] extern crate cfg_if;
@@ -66,7 +69,7 @@ mod utils;
 #[cfg(windows)] #[path = "sys/windows/mod.rs"] mod sys;
 #[cfg(target_os = "wasi")] #[path = "sys/wasi/mod.rs"] mod sys;
 #[cfg(all(unix, not(any(target_os = "solaris"))))] pub mod unix;
-#[cfg(all(target_env = "sgx", target_vendor = "fortanix"))] #[path = "sys/unix/mod.rs"] mod sys;
+#[cfg(all(target_env = "sgx", target_vendor = "fortanix"))] #[path = "sys/sgx/mod.rs"] mod sys;
 
 pub use tcp::TcpBuilder;
 pub use udp::UdpBuilder;
