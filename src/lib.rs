@@ -46,7 +46,7 @@
 #[cfg(any(target_os = "redox", target_os = "wasi", unix))] extern crate libc;
 
 #[cfg(all(target_env = "sgx", target_vendor = "fortanix"))]
-extern crate rs_libc as libc;
+extern crate libc;
 
 #[cfg(windows)] extern crate winapi;
 
