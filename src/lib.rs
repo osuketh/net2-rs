@@ -66,6 +66,7 @@ mod utils;
 #[cfg(windows)] #[path = "sys/windows/mod.rs"] mod sys;
 #[cfg(target_os = "wasi")] #[path = "sys/wasi/mod.rs"] mod sys;
 #[cfg(all(unix, not(any(target_os = "solaris"))))] pub mod unix;
+#[cfg(all(target_env = "sgx", target_vendor = "fortanix"))] #[path = "sys/unix/mod.rs"] mod sys;
 
 pub use tcp::TcpBuilder;
 pub use udp::UdpBuilder;
